@@ -1,69 +1,95 @@
+"use client";
+import { useEffect, useState } from "react";
 import { ProductGrid, ProductGridContainer } from "./styles";
+import { useCart } from "@/app/context/CartContext";
 import Image from "next/image";
+import axios from "axios";
+
+interface Product {
+  id: number;
+  name: string;
+  brand: string;
+  description: string;
+  price: number;
+  photo: string;
+}
+
 export function ProductList() {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const { addToCart } = useCart();
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get(
+          "https://mks-frontend-challenge-04811e8151e6.herokuapp.com/api/v1/products",
+          {
+            params: {
+              page: 1,
+              rows: 10,
+              sortBy: "id",
+              orderBy: "ASC",
+            },
+          }
+        );
+        setProducts(response.data.products);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  if (loading) {
+    return <p>Carregando...</p>;
+  }
+
   return (
     <ProductGrid>
       <ProductGridContainer>
-        <section className="product__content">
-          <div className="product__content-image">
-            <Image
-              src="/apple-watch.png"
-              width={111}
-              height={138}
-              alt="imagem teste"
-            />
-          </div>
-          <section className="product__content-infos">
-            <div className="product__content-infos-title">
-              Apple Watch Series 4 GPS
-              <div className="product__content-infos-price">
-                <span>R$399</span>
+        {products.map((product) => (
+          <section key={product.id} className="product__content">
+            <div className="product__content-image">
+              <Image
+                src={product.photo}
+                width={138}
+                height={138}
+                alt={product.name}
+              />
+            </div>
+            <section className="product__content-infos">
+              <div className="product__content-infos-title">
+                {product.name}
+                <div className="product__content-infos-price">
+                  <span>{`R$ ${Number(product.price).toLocaleString("pt-BR", {
+                    maximumFractionDigits: 0,
+                  })}`}</span>
+                </div>
               </div>
-            </div>
-            <div className="product__content-infos-description">
-              <p>Redesigned from scratch and completely revised.</p>
-            </div>
-            <div className="product__content-infos-button">
-              <button className="buy-button">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="14"
-                  height="16"
-                  viewBox="0 0 14 16"
-                  fill="none"
+              <div className="product__content-infos-description">
+                <p>{product.description}</p>
+              </div>
+              <div className="product__content-infos-button">
+                <button
+                  className="button__buy"
+                  onClick={() => addToCart(product)}
                 >
-                  <path
-                    opacity="0.737212"
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M3 1L1 3.7V13.15C1 13.8956 1.59695 14.5 2.33333 14.5H11.6667C12.403 14.5 13 13.8956 13 13.15V3.7L11 1H3Z"
-                    stroke="white"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                  <Image
+                    src="/shopping-bag-svg.svg"
+                    width={15}
+                    height={15}
+                    alt="Ícone de bolsa"
                   />
-                  <path
-                    opacity="0.737212"
-                    d="M1 4.375H13"
-                    stroke="white"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    opacity="0.737212"
-                    d="M10 7C10 8.24264 8.82475 9.25 7.375 9.25C5.92525 9.25 4.75 8.24264 4.75 7"
-                    stroke="white"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-                <p>COMPRAR</p>
-              </button>
-            </div>
+                  <p>COMPRAR</p>
+                </button>
+              </div>
+            </section>
           </section>
-        </section>
+        ))}
       </ProductGridContainer>
     </ProductGrid>
   );

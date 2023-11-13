@@ -2,32 +2,44 @@
 import styled from "styled-components";
 
 export const ProductGrid = styled.div`
-  max-height: 900px;
-  height: 555px;
+  max-height: 1000px;
   background-color: #e5e5e5;
   display: grid;
   justify-items: center;
-  align-items: center;
+  padding: 20px 0;
 `;
 
 export const ProductGridContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 280px);
+  grid-gap: 15px 0;
+  margin: 10px 0;
+
   .product__content {
     margin: 10px;
-    width: 217.56px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 0px 16px 24px rgb(0 0 0 / 10%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
+    height: 100%;
+    background-color: var(--white);
 
     &-infos {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 90%;
+
       &-title {
         font-size: 16px;
         font-weight: normal;
         line-height: 19px;
         display: flex;
-        margin: 10px;
+        margin: 10px 5px;
         align-items: center;
+        gap: 5px;
+        justify-content: space-between;
       }
 
       &-price {
@@ -53,7 +65,7 @@ export const ProductGridContainer = styled.div`
       }
 
       &-button {
-        .buy-button {
+        .button__buy {
           width: 100%;
           border: none;
           background-color: #0f52ba;
@@ -62,11 +74,7 @@ export const ProductGridContainer = styled.div`
           display: flex;
           align-items: center;
           justify-content: center;
-
-          svg {
-            margin-right: 10px;
-          }
-
+          gap: 10px;
           p {
             color: white;
             font-weight: bold;

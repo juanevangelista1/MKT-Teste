@@ -3,8 +3,8 @@ import Image from "next/image";
 export function MiniCart() {
   return (
     <MiniCartContainer>
-      <div className="minicart__overlay actived">
-        <div className="minicart__content actived">
+      <div className="minicart__overlay ">
+        <div className="minicart__content ">
           <div className="minicart__content--header">
             <div className="minicart__content--header-titleBox">
               <p className="minicart__content--header-title">
@@ -63,26 +63,20 @@ export function MiniCart() {
                     </a>
                     <div className="minicart__content-items-list-bottom">
                       <div className="minicart__content-items-list-bottom-input">
-                        <form className="minicart__form enabled">
+                        <p className="minicart__content-items-list-bottom-input-title">
+                          Qtd:
+                        </p>
+                        <form className="minicart__form ">
                           <button
-                            className="minicart__form-btn js--minicart-minus"
+                            className="minicart__form-btn minicart-minus"
                             disabled={true}
                           >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="14"
-                              height="2"
-                              viewBox="0 0 14 2"
-                              fill="none"
-                            >
-                              <path
-                                d="M1 1H13"
-                                stroke="#485CC7"
-                                stroke-width="1.5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                              ></path>
-                            </svg>
+                            <Image
+                              src="/button-minus.svg"
+                              width={15}
+                              height={15}
+                              alt="imagem teste"
+                            />
                           </button>
                           <input
                             type="text"
@@ -90,38 +84,27 @@ export function MiniCart() {
                             readOnly={true}
                             min="1"
                             max="3"
-                            className="minicart__form-input js--minicart-qty"
+                            className="minicart__form-input minicart-qty"
                           />
-                          <button className="minicart__form-btn js--minicart-plus">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="12"
-                              height="12"
-                              viewBox="0 0 12 12"
-                              fill="none"
-                            >
-                              <path
-                                d="M6 1V11"
-                                stroke="#485CC7"
-                                stroke-width="1.5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                              ></path>
-                              <path
-                                d="M1 6H11"
-                                stroke="#485CC7"
-                                stroke-ke-width="1.5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                              ></path>
-                            </svg>
+                          <button className="minicart__form-btn minicart-plus">
+                            <Image
+                              src="/button-plus.svg"
+                              width={15}
+                              height={15}
+                              alt="imagem teste"
+                            />
                           </button>
                         </form>
                       </div>
                     </div>
                     <div className="minicart__content-items-list-pricesBox">
                       <div className="minicart__content-items-list-price">
-                        <p>R$ 399,99</p>
+                        <span className="minicart__content-items-list-price-current">
+                          R$
+                          <span className="minicart__content-items-list-price-current-total">
+                            399
+                          </span>
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -131,7 +114,12 @@ export function MiniCart() {
           </div>
 
           <div className="minicart__content-bottom">
-            <button>comprar</button>
+            <button
+              className="minicart__content-bottom-button-buy"
+              id="buy-button"
+            >
+              Finalizar compra
+            </button>
           </div>
         </div>
       </div>
