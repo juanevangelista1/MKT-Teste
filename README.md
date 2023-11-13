@@ -37,5 +37,5 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 =======
 # MKT-Teste
-Teste para desenvolvedor front-end da MKT Sistemas
+
 >>>>>>> e8dc20498d5c56e2d26327e0f8c749d124a7ed7d
