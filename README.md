@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
@@ -39,3 +40,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 # MKT-Teste
 
 >>>>>>> e8dc20498d5c56e2d26327e0f8c749d124a7ed7d
+=======
+# MKT-Teste
+Teste Desenvolvedor Front-End MKT Sistemas
+>>>>>>> 220881ec4fe9ec23bb183a9af346d97001bca8d2
