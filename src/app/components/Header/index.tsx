@@ -23,7 +23,7 @@ export function Header() {
   const handleCloseCart = () => {
     setIsCartOpen(false);
   };
-
+  // teste
   const totalAmount = cart.reduce(
     (total, cartItem) => total + Number(cartItem.price),
     0
