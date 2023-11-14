@@ -1,6 +1,6 @@
 "use client";
 import React, { createContext, useContext, useState } from "react";
-
+import { QueryClient, QueryClientProvider } from "react-query";
 export interface Product {
   id: number;
   name: string;
@@ -27,29 +27,22 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [cart, setCart] = useState<Product[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const queryClient = new QueryClient();
 
-  const addToCart = (product: Product) => {
+  const addToCart = (product: Product) =>
     setCart((prevCart) => [...prevCart, product]);
-  };
-
-  const updateCart = (updatedCart: Product[]) => {
-    setCart(updatedCart);
-  };
-
-  const openCart = () => {
-    setIsCartOpen(true);
-  };
-
-  const closeCart = () => {
-    setIsCartOpen(false);
-  };
+  const updateCart = (updatedCart: Product[]) => setCart(updatedCart);
+  const openCart = () => setIsCartOpen(true);
+  const closeCart = () => setIsCartOpen(false);
 
   return (
-    <CartContext.Provider
-      value={{ cart, isCartOpen, addToCart, updateCart, openCart, closeCart }}
-    >
-      {children}
-    </CartContext.Provider>
+    <QueryClientProvider client={queryClient}>
+      <CartContext.Provider
+        value={{ cart, isCartOpen, addToCart, updateCart, openCart, closeCart }}
+      >
+        {children}
+      </CartContext.Provider>
+    </QueryClientProvider>
   );
 };
 

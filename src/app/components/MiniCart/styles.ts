@@ -97,9 +97,14 @@ export const MiniCartContainer = styled.section`
       &-titleBox {
         font-weight: 700;
         font-style: normal;
-        font-size: 21px;
-        color: white;
-        width: 60%;
+        color: var(--white);
+        width: 34%;
+      }
+      &-title {
+        font-size: 23px;
+        span {
+          font-size: 20px;
+        }
       }
 
       &-closeBtn {
@@ -221,6 +226,12 @@ export const MiniCartContainer = styled.section`
             }
           }
         }
+
+        &-price {
+          span {
+            font-weight: 700;
+          }
+        }
       }
     }
 
@@ -246,10 +257,14 @@ export const MiniCartContainer = styled.section`
           }
         }
       }
+
+      &-link-refresh-buy {
+        width: 100%;
+      }
       &-button {
         &-buy {
           width: 100%;
-          height: 50px;
+          height: 60px;
           background-color: black;
           border: none;
           color: white;

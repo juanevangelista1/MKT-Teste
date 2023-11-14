@@ -1,9 +1,9 @@
 "use client";
 import { useState, useEffect } from "react";
-import { HeaderContainer } from "./styles";
 import Image from "next/image";
-import { useCart } from "@/app/context/CartContext";
 import Skeleton from "react-loading-skeleton";
+import { useCart } from "@/app/context/CartContext";
+import { HeaderContainer } from "./styles";
 
 interface Product {
   id: number;
@@ -24,13 +24,23 @@ export function Header({ onOpenCart }: HeaderProps) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const sumQuantity = cart.reduce((total, item) => total + item.quantity, 0);
-    setTotalQuantity(sumQuantity);
+    const calculateTotalQuantity = () => {
+      const sumQuantity = cart.reduce(
+        (total, item) => total + item.quantity,
+        0
+      );
+      setTotalQuantity(sumQuantity);
+    };
+
+    calculateTotalQuantity();
     setLoading(false);
   }, [cart]);
 
   const handleOpenCart = () => {
-    onOpenCart && onOpenCart(!isCartOpen);
+    if (onOpenCart) {
+      onOpenCart(!isCartOpen);
+    }
+
     isCartOpen ? closeCart() : openCart();
   };
 

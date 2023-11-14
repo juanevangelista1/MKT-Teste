@@ -21,8 +21,7 @@ export function MiniCart() {
 
     if (existingItemIndex !== -1) {
       const updatedCart = [...cart];
-      updatedCart[existingItemIndex].quantity =
-        updatedCart[existingItemIndex].quantity + 1;
+      updatedCart[existingItemIndex].quantity += 1;
       updateCart(updatedCart);
     } else {
       const updatedCart = [...cart, { ...cartItem, quantity: 1 }];
@@ -44,8 +43,8 @@ export function MiniCart() {
         updatedCart[existingItemIndex].quantity -= 1;
       } else {
         const updatedCart = cart.filter((item) => item.id !== itemId);
+        updateCart(updatedCart);
       }
-      updateCart(updatedCart);
     }
   };
 
@@ -69,7 +68,7 @@ export function MiniCart() {
               <div className="minicart__content--header">
                 <div className="minicart__content--header-titleBox">
                   <p className="minicart__content--header-title">
-                    Carrinho de Compras
+                    Carrinho <span>de Compras</span>
                   </p>
                 </div>
                 <button
@@ -213,12 +212,17 @@ export function MiniCart() {
                     </p>
                   </div>
                 )}
-                <button
-                  className="minicart__content-bottom-button-buy"
-                  id="buy-button"
+                <a
+                  className="minicart__content-bottom-link-refresh-buy"
+                  href="/"
                 >
-                  Finalizar compra
-                </button>
+                  <button
+                    className="minicart__content-bottom-button-buy"
+                    id="buy-button"
+                  >
+                    Finalizar compra
+                  </button>
+                </a>
               </div>
             </div>
           </div>

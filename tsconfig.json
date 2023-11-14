@@ -13,7 +13,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "types": ["next", "jest"],
+    "types": ["next", "jest", "react-query"],
     "plugins": [
       {
         "name": "next"
