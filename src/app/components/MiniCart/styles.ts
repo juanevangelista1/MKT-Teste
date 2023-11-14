@@ -20,13 +20,14 @@ export const MiniCartContainer = styled.section`
   .minicart__content {
     position: fixed;
     right: -100%;
-    width: 400px;
+    width: 450px;
     height: 100vh;
     background-color: #0f52ba;
     z-index: 9;
     top: 0;
     border-radius: 4px;
     transition: all 0.4s ease-in-out 0s;
+
     &.actived {
       right: 0;
       transition: all 0.4s ease-in-out 0s;
@@ -41,10 +42,10 @@ export const MiniCartContainer = styled.section`
         &-title {
           &--content {
             font-size: 22px;
-            color: #001e62;
+            color: var(--white);
             font-weight: 700;
             text-align: center;
-            margin-top: 50px;
+            margin: 50px;
           }
         }
 
@@ -53,7 +54,7 @@ export const MiniCartContainer = styled.section`
 
           &--content {
             font-size: 16px;
-            color: #001e62;
+            color: var(--white);
             text-align: center;
             margin-top: 10px;
           }
@@ -91,7 +92,7 @@ export const MiniCartContainer = styled.section`
       margin: 25px;
       display: flex;
       align-items: center;
-      justify-content: space-around;
+      justify-content: space-between;
 
       &-titleBox {
         font-weight: 700;
@@ -106,9 +107,25 @@ export const MiniCartContainer = styled.section`
         background: none;
       }
     }
+    &-items-container {
+      max-height: 500px;
+      width: fit-content;
+      overflow-y: scroll;
+      scrollbar-width: thin;
+      scrollbar-color: transparent transparent;
+
+      &::-webkit-scrollbar {
+        width: 5px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: transparent;
+      }
+      &::-webkit-scrollbar-track {
+        background-color: transparent;
+      }
+    }
 
     &-items {
-      max-height: 355px;
       background: white;
       position: relative;
       margin: 25px;
@@ -213,7 +230,22 @@ export const MiniCartContainer = styled.section`
       display: flex;
       justify-content: center;
       align-items: center;
+      width: 100%;
+      flex-direction: column;
 
+      &-price {
+        &_total {
+          margin: 0 0 10px;
+          color: var(--white);
+          p {
+            font-weight: 700;
+            font-size: 19px;
+            span {
+              margin: 0 0 0 170px;
+            }
+          }
+        }
+      }
       &-button {
         &-buy {
           width: 100%;
