@@ -2,5 +2,21 @@
   "extends": [
     "next/core-web-vitals",
     "@rocketseat/eslint-config/next"
+  ],
+  "overrides": [
+    {
+      "files": ["**/*.test.js", "**/*.spec.js"],
+      "env": {
+        "jest/globals": true, 
+        "node": true
+      },
+      "plugins": ["jest"],
+      "extends": [
+        "plugin:jest/recommended"
+      ],
+      "rules": {
+        
+      }
+    }
   ]
 }

@@ -1,7 +1,6 @@
 "use client";
 
 import { useCart, Product } from "@/app/context/CartContext";
-import { fetchProducts } from "@/app/api/index";
 import { ProductGrid, ProductGridContainer, SkeletonGrid } from "./styles";
 import { useEffect, useState, memo } from "react";
 import Skeleton from "react-loading-skeleton";
